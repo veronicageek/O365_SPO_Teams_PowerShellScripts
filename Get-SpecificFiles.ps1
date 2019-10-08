@@ -35,7 +35,7 @@ foreach ($DocLib in $DocLibs) {
     #Loop through each item
     foreach ($Item in $AllItems) {
         ## Change *ABC* and *BCD* to your own requirements
-        if (($Item["FileRef"] -like "*ABC*") -or ($Item["FileRef"] -like "*BCD*")) {
+        if (($Item["FileLeafRef"] -like "*ABC*") -or ($Item["FileLeafRef"] -like "*BCD*")) {
             Write-Host "File found. Path:" $Item["FileRef"] -ForegroundColor Green
             
             #Creating new object to export in .csv file
