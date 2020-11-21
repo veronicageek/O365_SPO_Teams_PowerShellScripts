@@ -3,8 +3,7 @@
 ####################################################################################################################################################
 
 #Connect to Teams & Azure AD
-Connect-PnPOnline -Scopes "Group.Read.All" -Credentials "<YOUR-CREDS-NAME>"
-Connect-AzureAD -Credential (Get-PnPStoredCredential -Name "<YOUR-CREDS-NAME>" -Type PSCredential) | Out-Null
+Connect-PnPOnline -Scopes "Group.ReadWrite.All" -Credentials "<YOUR-CREDS-NAME>"
 
 #Log file to export results
 $logFile = "C:\users\$env:USERNAME\desktop\AllTeamsUserIn.csv"
@@ -14,8 +13,8 @@ $allTeams = Get-PnPTeamsTeam
 $results = @()
 
 $userToFind = "user123@domain.com"
-$userToFindInAD = Get-AzureADUser | Where-Object ({ $_.UserPrincipalName -match $userToFind })
-$userToFindID = $userToFindInAD.ObjectId
+$userToFindInAD = Get-PnPAADUser | Where-Object ({ $_.UserPrincipalName -match $userToFind })
+$userToFindID = $userToFindInAD.Id
 
 
 #Loop through the TEAMS
